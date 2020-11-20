@@ -36,23 +36,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var insert = function (_signup) { return __awaiter(void 0, void 0, Promise, function () {
-    return __generator(this, function (_a) {
-        throw new Error("Not implemented !");
+var sinon_1 = require("sinon");
+var signup_1 = require("@src/ports/repos/signup");
+var signup_complete_1 = require("@src/controllers/signup-complete");
+var chai_1 = require("chai");
+var getByTokenSignup;
+var updateStausTokenSignup;
+var updateStatusSignup;
+describe("Signup complete", function () {
+    beforeEach(function () {
+        getByTokenSignup = sinon_1.stub(signup_1["default"], "getByToken");
+        updateStausTokenSignup = sinon_1.stub(signup_1["default"], "updateStatus");
     });
-}); };
-var updateStatus = function (_signup, _newStatus) { return __awaiter(void 0, void 0, Promise, function () {
-    return __generator(this, function (_a) {
-        throw new Error("Not implemented ");
-    });
-}); };
-var getByToken = function (_token) { return __awaiter(void 0, void 0, Promise, function () {
-    return __generator(this, function (_a) {
-        throw new Error("Not implemented ");
-    });
-}); };
-exports["default"] = {
-    insert: insert,
-    updateStatus: updateStatus,
-    getByToken: getByToken
+    afterEach(function () { return sinon_1.restore(); });
+    it("update signup status to complete", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var token;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    token = "some-token";
+                    getByTokenSignup.resolves(signup);
+                    return [4 /*yield*/, signup_complete_1["default"](token)];
+                case 1:
+                    _a.sent();
+                    chai_1.expect(updateStatusSignup).to.have.been.calledWith(signup, "COMPLETE");
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+});
+var signup = {
+    token: "some-token",
+    staus: "IN_PROGRESS",
+    initParams: {
+        fullName: "Some body",
+        dateOfBirht: "1990-01-01",
+        address: "Some place, 123"
+    }
 };

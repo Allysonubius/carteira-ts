@@ -36,23 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var insert = function (_signup) { return __awaiter(void 0, void 0, Promise, function () {
+var signup_1 = require("@src/ports/repos/signup");
+exports["default"] = (function (_token) { return __awaiter(void 0, void 0, Promise, function () {
+    var signup;
     return __generator(this, function (_a) {
-        throw new Error("Not implemented !");
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, signup_1["default"].getByToken(_token)];
+            case 1:
+                signup = _a.sent();
+                return [4 /*yield*/, signup_1["default"].updateStatus(signup, "COMPLETE")];
+            case 2:
+                _a.sent();
+                return [2 /*return*/];
+        }
     });
-}); };
-var updateStatus = function (_signup, _newStatus) { return __awaiter(void 0, void 0, Promise, function () {
-    return __generator(this, function (_a) {
-        throw new Error("Not implemented ");
-    });
-}); };
-var getByToken = function (_token) { return __awaiter(void 0, void 0, Promise, function () {
-    return __generator(this, function (_a) {
-        throw new Error("Not implemented ");
-    });
-}); };
-exports["default"] = {
-    insert: insert,
-    updateStatus: updateStatus,
-    getByToken: getByToken
-};
+}); });
