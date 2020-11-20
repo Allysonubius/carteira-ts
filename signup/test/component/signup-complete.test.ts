@@ -3,27 +3,28 @@ import signupRepo from '@src/ports/repos/signup';
 import signupComplete from "@src/controllers/signup-complete";
 import { expect } from "chai";
 import Signup from '../../src/types/signup';
-import signup from '@src/ports/repos/signup';
-import { SignupStatus } from '../../src/types/signup';
 
 let getByTokenSignup: SinonStub;
 let updateStausTokenSignup: SinonStub;
 let updateStatusSignup: SinonStub;
+let completeNotificationSignup: SinonStub;
+
 
 describe ("Signup complete", () =>{
     beforeEach(() =>{
         getByTokenSignup = stub(signupRepo, "getByToken");
         updateStausTokenSignup  = stub(signupRepo, "updateStatus");
+        completeNotificationSignup = stub(signupNotification, "COMPLETE");
     });
     afterEach(() => restore());
 
-    it("update signup status to complete", async () =>{
+    it("send a notification when a signup is completed", async () =>{
         const token =  "some-token";
         getByTokenSignup.resolves(signup);
 
         await signupComplete(token);
          
-        expect(updateStatusSignup).to.have.been.calledWith(signup, "COMPLETE" );
+        expect(completeNotificationSignup).to.have.been.calledOnce;
     });
 });
 

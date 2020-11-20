@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var signup_1 = require("@src/ports/repos/signup");
+var signup_2 = require("@src/ports/notification/signup");
 exports["default"] = (function (_token) { return __awaiter(void 0, void 0, Promise, function () {
     var signup;
     return __generator(this, function (_a) {
@@ -46,6 +47,9 @@ exports["default"] = (function (_token) { return __awaiter(void 0, void 0, Promi
                 signup = _a.sent();
                 return [4 /*yield*/, signup_1["default"].updateStatus(signup, "COMPLETE")];
             case 2:
+                _a.sent();
+                return [4 /*yield*/, signup_2["default"].complete(signup)];
+            case 3:
                 _a.sent();
                 return [2 /*return*/];
         }

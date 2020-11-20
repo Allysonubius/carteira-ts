@@ -36,43 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var sinon_1 = require("sinon");
-var signup_1 = require("@src/ports/repos/signup");
-var signup_complete_1 = require("@src/controllers/signup-complete");
-var chai_1 = require("chai");
-var getByTokenSignup;
-var updateStausTokenSignup;
-var updateStatusSignup;
-var completeNotificationSignup;
-describe("Signup complete", function () {
-    beforeEach(function () {
-        getByTokenSignup = sinon_1.stub(signup_1["default"], "getByToken");
-        updateStausTokenSignup = sinon_1.stub(signup_1["default"], "updateStatus");
-        completeNotificationSignup = sinon_1.stub(signupNotification, "COMPLETE");
+var complete = function (_signup) { return __awaiter(void 0, void 0, Promise, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/];
     });
-    afterEach(function () { return sinon_1.restore(); });
-    it("send a notification when a signup is completed", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var token;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    token = "some-token";
-                    getByTokenSignup.resolves(signup);
-                    return [4 /*yield*/, signup_complete_1["default"](token)];
-                case 1:
-                    _a.sent();
-                    chai_1.expect(completeNotificationSignup).to.have.been.calledOnce;
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-});
-var signup = {
-    token: "some-token",
-    staus: "IN_PROGRESS",
-    initParams: {
-        fullName: "Some body",
-        dateOfBirht: "1990-01-01",
-        address: "Some place, 123"
-    }
+}); };
+exports["default"] = {
+    complete: complete
 };
